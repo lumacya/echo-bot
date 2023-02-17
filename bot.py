@@ -21,9 +21,14 @@ async def start_handler(message: types.Message):
     await message.reply(f"Welcome to my first telegram bot, {user_full_name}!")
 
 @dp.message_handler(commands=['help'])
-async def help_handler():
+async def help_handler(message: types.Message):
 
-    await f'I can echo your messages. Try me!'
+    await message.reply(f'I can echo your messages. Try me!')
+
+@dp.message_handler()
+async def echo_message(message: types.Message):
+
+    await bot.send_message(message.from_user.id, message.text)
 
 
 if __name__ == '__main__':
